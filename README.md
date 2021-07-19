@@ -22,13 +22,13 @@ Application generates a team portfolio based on user input using the Inquirer mo
     * You may add the name of a specific test to run just that file. IE. npm test Engineer to run the Engineer tests
 2. `node index.js` => runs the index.js file which will run the program and generate the html with the stated employee information
 
-![Test Passed]()
+![Test Passed](https://github.com/JSheleg/team-portfolio/blob/main/dist/img/testImg10.JPG)
 
 
 ## Usage
 Use inquirer from command terminal to answer questions about a teams employees to create a readable file with the all of the employees information listed for easy reference
 
-![Generated Team]()
+![Generated Team](https://github.com/JSheleg/team-portfolio/blob/main/dist/img/teamGenerated.JPG)
 
 ## License
 This project is licensed under MIT
