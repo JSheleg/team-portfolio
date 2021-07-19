@@ -5,6 +5,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const render = require('./src/page-template.js');
+const { hasUncaughtExceptionCaptureCallback } = require('process');
 const outputDirectory = path.resolve(__dirname, "output");
 const outputPath = path.join(outputDirectory, 'team.html');
 const employees = [];
@@ -20,32 +21,66 @@ const promptManager = () =>{
     {
       type: 'input',
       name: 'name',
-      message: 'What is the team managers name?'
+      message: 'What is the team managers name?',
+        validate: nameInput => {
+            if(nameInput){
+                return true;
+            }
+            else{
+                console.log("Please enter Managers Name!");
+                return false;
+            }
+        }
     },
     {
        type: 'input',
        name: 'id',
-       message: 'What is the managers id number?'
+       message: 'What is the managers id number?',
+        validate: idNumber => {
+            if(isNaN(idNumber)){
+                console.log("Please enter the Managers ID Number!");
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
     },
     {
         type: 'input',
         name: 'email',
-        message: 'What is the managers email address?'
+        message: 'What is the managers email address?',
+        validate: email => {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+            if(valid){
+                return true;
+            }
+            else{
+                console.log("Please enter a proper email!")
+                return false;
+            } 
+        }
     },
     {
         type: 'input',
         name: 'officeNumber',
-        message: 'What is the managers office number?'
-    },     
+        message: 'What is the managers office number?',
+        validate: officeNumber => {
+            if(isNaN(officeNumber)){
+                console.log("Please enter the Managers office Number");
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    }     
   ])
     .then((data) => {
         const manager = new Manager(data.name,data.id,data.email,data.officeNumber)
         manager.getRole(); 
-        employees.push(manager)  
-        // console.log(employees)
-        
+        employees.push(manager)          
     
-        // console.log(employees )
         promptTeamMembers(employees)
     
     });
@@ -83,7 +118,16 @@ const promptEngineer = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the team members name?'
+            message: 'What is the team members name?',
+            validate: nameInput => {
+                if(nameInput){
+                    return true;
+                }
+                else{
+                    console.log("Please enter the Engineers Name!");
+                    return false;
+                }
+            }
             
         },
         {
