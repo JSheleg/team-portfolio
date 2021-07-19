@@ -133,18 +133,46 @@ const promptEngineer = () => {
         {
             type:'input',
             name: 'id',
-            message: 'What is the employees id number?'
+            message: 'What is the employees id number?',
+            validate: idNumber => {
+                if(isNaN(idNumber)){
+                    console.log("Please enter the employees ID Number!");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
 
         },
         {
             type: 'input',
             name: 'email',
-            message: 'What is the employees email address?'
+            message: 'What is the employees email address?',
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if(valid){
+                    return true;
+                }
+                else{
+                    console.log("Please enter a proper email!")
+                    return false;
+                } 
+            }
         },
         {
             type: 'input',
             name: 'github',
-            message: 'What is the engineers github username?'
+            message: 'What is the engineers github username?',
+            validate: githubInput => {
+                if(githubInput){
+                    return true;
+                }
+                else{
+                    console.log("Please enter the employees github username!");
+                    return false;
+                }
+            }
 
         }        
     ])
@@ -168,23 +196,59 @@ const promptIntern = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the team members name?'
+            message: 'What is the team members name?',
+            validate: nameInput => {
+                if(nameInput){
+                    return true;
+                }
+                else{
+                    console.log("Please enter the Interns Name!");
+                    return false;
+                }
+            }
         },
         {
             type:'input',
             name: 'id',
-            message: 'What is the employees id number?'
-
+            message: 'What is the employees id number?',
+            validate: idNumber => {
+                if(isNaN(idNumber)){
+                    console.log("Please enter the employees ID Number!");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: 'What is the employees email address?'
+            message: 'What is the employees email address?',
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if(valid){
+                    return true;
+                }
+                else{
+                    console.log("Please enter a proper email!")
+                    return false;
+                } 
+            }
         },
         {
             type:'input',
             name: 'school',
-            message:'What school does the Intern attend?'
+            message:'What school does the Intern attend?',
+            validate: school => {
+                if(school){
+                    return true;
+                }
+                else{
+                    console.log("Please enter the Interns school!");
+                    return false;
+                }
+            }
         }
 
     ])
