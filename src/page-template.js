@@ -1,8 +1,9 @@
 
-const employees = require('../index.js')
+// const employees = require('../index.js')
 
-// console.log(employees + " page-template")
+
 const buildTeam = (team) => {
+    //initialize teamArray. This will store the completed cards that will be populated on team.html
     const teamArray = [];
     // console.log('top of buildteam', team)
 
@@ -60,20 +61,18 @@ const buildTeam = (team) => {
     `;
     };
 
+    //filter through team to find managers, call generateManager() function to map through filtered results and formulate a card for each and push it to teamArray
     const manager = team.filter(employee => employee.getRole()=== 'Manager')
-    console.log(manager, 'filter')
-
     teamArray.push(manager.map(x => generateManager(x)))
-    console.log(teamArray, "team array")
-
+    
+    //filter through team to find Engineers, call generateEngineer() function to map through filtered results and formulate a card for each and push to teamArray
     const engineer = team.filter(employee => employee.getRole()=== 'Engineer')
     teamArray.push(engineer.map(x => generateEngineer(x)))
 
+    //filter through team to find Interns, call generateIntern() function to map through filtered results and formulate a card for each and push to teamArray
     const intern = team.filter(employee => employee.getRole()=== 'Intern')
     teamArray.push(intern.map(x => generateIntern(x)))
 
-
-   console.log(teamArray);
     return teamArray;
 }
    module.exports = team => { 

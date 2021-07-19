@@ -86,7 +86,7 @@ const promptManager = () =>{
     });
 }
 
-//prompts for additional team members information
+//prompt for additional team members 
 const promptTeamMembers = () => {
     inquirer.prompt([
         {
@@ -106,7 +106,7 @@ const promptTeamMembers = () => {
                 promptIntern();
                 break;
             default:
-                console.log(employees)
+                //When 'None' is chosen, default is hit and GenerateHTML() is called. The fully created employees is passed to the function
                 console.log('generate html')
                 GenerateHTML(employees);
         }
@@ -177,12 +177,10 @@ const promptEngineer = () => {
         }        
     ])
     .then((data) => {
-        // console.log(data);
         const engineer = new Engineer(data.name,data.id,data.email,data.github)
         engineer.getRole();
         engineer.getGithub(); 
         employees.push(engineer);
-        // console.log(employees)
         
      
         promptTeamMembers(employees);
@@ -253,12 +251,12 @@ const promptIntern = () => {
 
     ])
     .then((data) => {
-        // console.log(data);
+        
         const intern = new Intern(data.name,data.id,data.email,data.school)
         intern.getRole();
         intern.getSchool(); 
         employees.push(intern); 
-        // console.log(employees);
+        
      
         promptTeamMembers();
                
@@ -269,9 +267,9 @@ const promptIntern = () => {
 promptManager();
 
 
-
+//generate team.html file and output folder
 const GenerateHTML = (employees) =>{
-    // console.log(employees +" index")
+    //checks for existance of output file, creates one if none exists. creates the team.html file
     if(!fs.existsSync(outputDirectory)){
         fs.mkdirSync(outputDirectory)
     }
