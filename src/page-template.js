@@ -9,7 +9,6 @@ const buildTeam = (team) => {
 
     //create Manager card
     const generateManager = (manager) =>{
-        console.log(manager, ' gen manager func')
         return `
         <div class="card bg-primary shadow p-1 mx-2 my-2" style="width: 18rem;">
             <div class="card-header text-white">
