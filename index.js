@@ -4,10 +4,11 @@ const path = require('path')
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const employees = [];
 const render = require('./src/page-template.js');
 const outputDirectory = path.resolve(__dirname, "output");
 const outputPath = path.join(outputDirectory, 'team.html');
+const employees = [];
+
 // const { rejects } = require('assert');
 // const { resolve } = require('path/posix');
 
@@ -38,14 +39,14 @@ const promptManager = () =>{
     },     
   ])
     .then((data) => {
-        console.log(data);
         const manager = new Manager(data.name,data.id,data.email,data.officeNumber)
-        manager.getRole() 
+        manager.getRole(); 
         employees.push(manager)  
-        console.log(employees);
-    
+        // console.log(employees)
         
-        promptTeamMembers()
+    
+        // console.log(employees )
+        promptTeamMembers(employees)
     
     });
 }
@@ -72,7 +73,7 @@ const promptTeamMembers = () => {
             default:
                 console.log(employees)
                 console.log('generate html')
-                GenerateHTML();
+                GenerateHTML(employees);
         }
     })
 }
@@ -104,14 +105,15 @@ const promptEngineer = () => {
         }        
     ])
     .then((data) => {
-        console.log(data);
+        // console.log(data);
         const engineer = new Engineer(data.name,data.id,data.email,data.github)
         engineer.getRole();
         engineer.getGithub(); 
         employees.push(engineer);
-        console.log(employees);
+        // console.log(employees)
+        
      
-        promptTeamMembers();
+        promptTeamMembers(employees);
        
         
     });
@@ -143,12 +145,12 @@ const promptIntern = () => {
 
     ])
     .then((data) => {
-        console.log(data);
+        // console.log(data);
         const intern = new Intern(data.name,data.id,data.email,data.school)
         intern.getRole();
         intern.getSchool(); 
         employees.push(intern); 
-        console.log(employees);
+        // console.log(employees);
      
         promptTeamMembers();
                
@@ -158,7 +160,10 @@ const promptIntern = () => {
 
 promptManager();
 
+
+
 const GenerateHTML = (employees) =>{
+    // console.log(employees +" index")
     if(!fs.existsSync(outputDirectory)){
         fs.mkdirSync(outputDirectory)
     }
